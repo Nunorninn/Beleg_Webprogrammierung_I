@@ -8,8 +8,7 @@ GitHub Codespaces ermöglicht es dir, direkt im Browser in einer vollständigen 
 
 ### So öffnest du Codespaces:
 
-1. Gehe auf die Hauptseite dieses Repositorys auf GitHub:  
-   `https://github.com/Nunorninn/Beleg_Webprogrammierung_I`
+1. Gehe auf die Hauptseite dieses Repositorys auf GitHub.
 
 2. Klicke auf den grünen **`<> Code`**-Button (oben rechts über der Dateiliste).
 
