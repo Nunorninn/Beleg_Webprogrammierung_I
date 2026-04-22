@@ -1,0 +1,58 @@
+{
+  "mathe": [
+    {
+      "a": "Ableitung von f(x) = sin(x)",
+      "l": ["cos(x)", "-cos(x)", "sin(x)", "tan(x)"]
+    },
+    {
+      "a": "Integral von 1/x dx",
+      "l": ["ln|x|", "e^x", "x^2", "1"]
+    },
+    {
+      "a": "Was ist die Wurzel aus 144?",
+      "l": ["12", "14", "11", "13"]
+    }
+  ],
+  "informatik": [
+    {
+      "a": "Komplexität von Binary Search (Best Case)",
+      "l": ["O(1)", "O(log n)", "O(n)", "O(n log n)"]
+    },
+    {
+      "a": "Welche Datenstruktur nutzt das LIFO-Prinzip?",
+      "l": ["Stack", "Queue", "Tree", "Graph"]
+    },
+    {
+      "a": "Wie viele Bit sind ein Byte?",
+      "l": ["8", "16", "4", "10"]
+    }
+  ],
+  "web": [
+    {
+      "a": "Welches HTML-Element wird für den größten Titel verwendet?",
+      "l": ["<h1>", "<head>", "<header>", "<h6>"]
+    },
+    {
+      "a": "Wofür steht CSS?",
+      "l": ["Cascading Style Sheets", "Creative Style System", "Computer Shell Sheet", "Color Style Syntax"]
+    },
+    {
+      "a": "Welche Methode wird in REST meist zum Erstellen von Ressourcen genutzt?",
+      "l": ["POST", "GET", "PATCH", "DELETE"]
+    }
+  ],
+  "deutsch": [
+    {
+      "a": "Was ist das Partizip II von 'laufen'?",
+      "l": ["gelaufen", "lief", "gelaufen sein", "läufig"]
+    },
+    {
+      "a": "Wer schrieb 'Faust'?",
+      "l": ["Johann Wolfgang von Goethe", "Friedrich Schiller", "Thomas Mann", "Franz Kafka"]
+    },
+    {
+      "a": "Welches Wort ist ein Synonym für 'obskur'?",
+      "l": ["unbekannt", "hell", "offensichtlich", "einfach"]
+    }
+  ]
+}
