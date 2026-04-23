@@ -1,31 +1,48 @@
-"use strict";
 
-export class Model {
-  constructor() {
-    this.questions = [];
-    this.currentIndex = 0;
-    this.correct = 0;
-  }
+const matheBtn = document.getElementById("mathe");
+const deutschBtn = document.getElementById("deutsch");
+const informatikBtn = document.getElementById("informatik");
+const webBtn = document.getElementById("web");
+const selscreen = Document.getElementById("category-selection");
+const quiz = document.getElementById("quiz");
 
-  async loadLocal(category) {
-    const res = await fetch("data/questions.json");
-    const data = await res.json();
-    this.questions = this.shuffle(data[category]);
-  }
+function switchmathquiz()
+{
+  selscreen.style.display = "none";
+  quiz.style.display = "block";
 
-  getNextQuestion() {
-    return this.questions[this.currentIndex++];
-  }
-
-  checkAnswer(question, answer) {
-    if (answer === question.l[0]) {
-      this.correct++;
-      return true;
-    }
-    return false;
-  }
-
-  shuffle(arr) {
-    return arr.sort(() => Math.random() - 0.5);
-  }
+  showQuestion("mathe");
+  updateProgress();
 }
+
+function switchdeutschquiz()
+{
+  selscreen.style.display = "none";
+  quiz.style.display = "block";
+  
+  showQuestion("deutsch");
+  updateProgress();
+}
+
+function switchinformatikquiz()
+{
+  selscreen.style.display = "none";
+  quiz.style.display = "block";
+  
+  showQuestion("informatik");
+  updateProgress();
+}
+
+function switchwebquiz()
+{
+  selscreen.style.display = "none";
+  quiz.style.display = "block";
+  
+  showQuestion("web");
+  updateProgress();
+}
+
+matheBtn.addEventListener("click", switchmathquiz);
+deutschBtn.addEventListener("click", switchdeutschquiz);
+informatikBtn.addEventListener("click", switchinformatikquiz);
+webBtn.addEventListener("click", switchwebquiz);
