@@ -1,19 +1,43 @@
 body {
-  font-family: sans-serif;
-  margin: 0;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background-attachment: fixed; /* Hintergrund scrollt nicht mit */
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
-#answers button {
-  display: block;
-  width: 100%;
-  margin: 5px 0;
+/* Styling für die Buttons */
+button {
+    background-color: #007bff; /* Primäres Blau */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    
+    /* Der Schattierungseffekt */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Sanfter Übergang für Hover-Effekte */
+    transition: all 0.3s ease;
 }
 
-/* Desktop */
-@media (min-width: 768px) {
-  #answers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+/* Effekt, wenn man mit der Maus über den Button fährt */
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Button hebt sich leicht an */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Effekt beim Draufklicken */
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
