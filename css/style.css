@@ -16,14 +16,14 @@ button {
     background-color: #007bff; /* Primäres Blau */
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 75px 150px;
     font-size: 16px;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
     
     /* Der Schattierungseffekt */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     
     /* Sanfter Übergang für Hover-Effekte */
     transition: all 0.3s ease;
@@ -40,4 +40,28 @@ button:hover {
 button:active {
     transform: translateY(1px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-} 
+}
+
+#answer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 200px; /* Platz dazwischen */
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#answer input[type="button"] {
+    padding: 100px;
+    font-size: 24px;
+    background-color: #007bff; /* Dein Blau */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Schattierung */
+    transition: background 0.3s;
+}
+
+#answer input[type="button"]:hover {
+    background-color: #0056b3;
+}
