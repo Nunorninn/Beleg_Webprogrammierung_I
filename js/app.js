@@ -97,6 +97,14 @@ function Antwort4()
   showQuestion(currentcategory);
 }
 
+function goBack() {
+    quiz.style.display = "none";
+    selscreen.style.display = "block";
+    currentQuestionIndex = 0;
+    currentcategory = "";
+    console.log("Zurück zum Hauptmenü");
+}
+
 
 matheBtn.addEventListener("click", switchmathquiz);
 deutschBtn.addEventListener("click", switchdeutschquiz);
