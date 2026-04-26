@@ -8,6 +8,7 @@ const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const Anworten = document.getElementById("answers");
 const Result = document.getElementById("result");
+const Progress = document.getElementById("progress");
 
 let currentcategory= "";
 let allQuestions = {};
@@ -35,6 +36,7 @@ function switchmathquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
+  Progress.style.display = "block";
 
   showQuestion("mathe");
 }
@@ -43,6 +45,7 @@ function switchdeutschquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
+  Progress.style.display = "block";
   
   showQuestion("deutsch");
 }
@@ -51,6 +54,7 @@ function switchinformatikquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
+  Progress.style.display = "block";
   
   showQuestion("informatik");
 }
@@ -59,6 +63,7 @@ function switchwebquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
+  Progress.style.display = "block";
   
   showQuestion("web");
 }
@@ -143,6 +148,7 @@ function goBack() {
     currentQuestionIndex = 0;
     currentcategory = "";
     EndRes = 0;
+    Progress.style.display = "none";
     console.log("Zurück zum Hauptmenü");
 }
 
