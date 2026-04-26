@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <div id="Back">
-    <button id="btn-back" onclick="goBack()">&#8592;</button>  
-  </div>
+    <div id="Back">
+      <button id="btn-back" onclick="goBack()">&#8592;</button>  
+    </div>
   <title>Lernprogramm</title>
  <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,7 +12,7 @@
 
   <div id="app">
     <img src="data/HTW.png" alt="Logo" style="width: 100px; height: auto;">
-    
+
     <h1>Lernprogramm</h1>
     <div id="category-selection">
       <input type="button" id="mathe" value="Mathematik">
@@ -30,13 +30,16 @@
       <input type="button" id="answer3" value="Antwort 3">
       <input type="button" id="answer4" value="Antwort 4">
       </div>
+    </div>
+
     <div id="progress" style="display: none;">
       <div id="bar"></div>
     </div>
 
-    <div id="result"></div>
+    <div id="result" style="display: none;"></div>
+
   </div>
    <script src="js/app.js"></script>
-   <script src="js/progressbar.js"></script>
+   <!--<script src="js/progressbar.js"></script>-->
 </body>
 </html>

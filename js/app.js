@@ -7,11 +7,13 @@ const selscreen = document.getElementById("category-selection");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const Anworten = document.getElementById("answers");
+const Result = document.getElementById("result");
 
 let currentcategory= "";
 let allQuestions = {};
 let currentQuestions = [];
 let currentQuestionIndex = 0;
+let EndRes = 0;
 const frageObjekt = currentQuestions[0];
 
 //Elemente für die Antworten
@@ -74,35 +76,94 @@ function showQuestion(category)
 }
 
 function Antwort1()
-{
+{ 
+  let Richtig= 0; 
+  if(ans1.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
-  showQuestion(currentcategory);
+  if(currentQuestionIndex >= 10)
+  {
+    ShowResult(Richtig);
+  }
+  else{
+    showQuestion(currentcategory);
+  }
+  
 }
 
 function Antwort2()
 {
+  let Richtig= 0;
+  if(ans2.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
-  showQuestion(currentcategory);
+  if(currentQuestionIndex >= 10)
+  {
+    ShowResult(Richtig);
+  }
+  else{
+    showQuestion(currentcategory);
+  }
+  
 }
 
 function Antwort3()
 {
+  let Richtig= 0;
+  if(ans3.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
-  showQuestion(currentcategory);
+  if(currentQuestionIndex >= 10)
+  {
+    ShowResult(Richtig);
+  }
+  else{
+    showQuestion(currentcategory);
+  }
+  
 }
 
 function Antwort4()
 {
+  let Richtig=0;
+  if(ans4.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
-  showQuestion(currentcategory);
+  
+  if(currentQuestionIndex >= 10)
+  {
+    ShowResult(Richtig);
+  }
+  else{
+    showQuestion(currentcategory);
+  }
+  
 }
 
 function goBack() {
     quiz.style.display = "none";
     selscreen.style.display = "block";
+    Result.style.display = "none";
     currentQuestionIndex = 0;
     currentcategory = "";
+    EndRes = 0;
     console.log("Zurück zum Hauptmenü");
+}
+
+function ShowResult(Richtig)
+{
+    Result.style.display = "block";
+    if(currentQuestionIndex <= 10)
+    {
+      Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!"; 
+    }
+    else if (currentQuestionIndex > 10 && Richtig == 1)
+    {
+      Result.innerText = "Da versucht jemand zu Mogeln, -1 Punkt!" + EndRes;
+      EndRes= EndRes-2;
+    }
+    else
+    {
+      Result.innerText = "Da versucht jemand zu Mogeln, -1 Punkt!" +EndRes;
+      EndRes--;
+    }
+    
 }
 
 
