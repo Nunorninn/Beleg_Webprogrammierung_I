@@ -1,58 +1,50 @@
 {
   "mathe": [
-    {
-      "a": "Ableitung von f(x) = sin(x)",
-      "l": ["cos(x)", "-cos(x)", "sin(x)", "tan(x)"]
-    },
-    {
-      "a": "Integral von 1/x dx",
-      "l": ["ln|x|", "e^x", "x^2", "1"]
-    },
-    {
-      "a": "Was ist die Wurzel aus 144?",
-      "l": ["12", "14", "11", "13"]
-    }
+    { "a": "Ableitung von f(x) = sin(x)", "l": ["cos(x)", "-cos(x)", "sin(x)", "tan(x)"] },
+    { "a": "Integral von 1/x dx", "l": ["ln|x|", "e^x", "x^2", "1"] },
+    { "a": "Was ist die Wurzel aus 144?", "l": ["12", "14", "11", "13"] },
+    { "a": "Was ist der Wert von Pi (auf 2 Dezimalstellen)?", "l": ["3,14", "3,12", "3,16", "3,18"] },
+    { "a": "Wie lautet der Satz des Pythagoras?", "l": ["a² + b² = c²", "a + b = c", "a² - b² = c²", "a * b = c"] },
+    { "a": "Was ist das Ergebnis von 7 * 8?", "l": ["56", "54", "62", "48"] },
+    { "a": "Was ist die Summe der Innenwinkel eines Dreiecks?", "l": ["180°", "90°", "360°", "270°"] },
+    { "a": "Was ist 2 hoch 10?", "l": ["1024", "512", "2048", "1000"] },
+    { "a": "Wie nennt man eine Zahl, die nur durch 1 und sich selbst teilbar ist?", "l": ["Primzahl", "Gerade Zahl", "Rationale Zahl", "Quadratzahl"] },
+    { "a": "Was ist die Ableitung von x²?", "l": ["2x", "x", "2", "x³"] }
   ],
   "informatik": [
-    {
-      "a": "Komplexität von Binary Search (Best Case)",
-      "l": ["O(1)", "O(log n)", "O(n)", "O(n log n)"]
-    },
-    {
-      "a": "Welche Datenstruktur nutzt das LIFO-Prinzip?",
-      "l": ["Stack", "Queue", "Tree", "Graph"]
-    },
-    {
-      "a": "Wie viele Bit sind ein Byte?",
-      "l": ["8", "16", "4", "10"]
-    }
+    { "a": "Komplexität von Binary Search (Best Case)", "l": ["O(1)", "O(log n)", "O(n)", "O(n log n)"] },
+    { "a": "Welche Datenstruktur nutzt das LIFO-Prinzip?", "l": ["Stack", "Queue", "Tree", "Graph"] },
+    { "a": "Wie viele Bit sind ein Byte?", "l": ["8", "16", "4", "10"] },
+    { "a": "Was bedeutet die Abkürzung 'RAM'?", "l": ["Random Access Memory", "Read Access Memory", "Rapid Application Module", "Remote Analysis Machine"] },
+    { "a": "Welches Protokoll wird zur Übertragung von Webseiten genutzt?", "l": ["HTTP", "FTP", "SMTP", "SSH"] },
+    { "a": "Was ist ein 'Algorithmus'?", "l": ["Eine Schritt-für-Schritt-Anleitung", "Eine Hardware-Komponente", "Ein Programmierfehler", "Ein Datenbank-Typ"] },
+    { "a": "Wer gilt als Vater der modernen Informatik?", "l": ["Alan Turing", "Bill Gates", "Steve Jobs", "Elon Musk"] },
+    { "a": "Was ist die Basis des Binärsystems?", "l": ["2", "10", "16", "8"] },
+    { "a": "Wofür steht 'URL'?", "l": ["Uniform Resource Locator", "Universal Radio Link", "User Response Layer", "Unit Registry Line"] },
+    { "a": "Welches Zeichen beendet in Java/C++ meist eine Anweisung?", "l": [";", ":", ".", "!"] }
   ],
   "web": [
-    {
-      "a": "Welches HTML-Element wird für den größten Titel verwendet?",
-      "l": ["<h1>", "<head>", "<header>", "<h6>"]
-    },
-    {
-      "a": "Wofür steht CSS?",
-      "l": ["Cascading Style Sheets", "Creative Style System", "Computer Shell Sheet", "Color Style Syntax"]
-    },
-    {
-      "a": "Welche Methode wird in REST meist zum Erstellen von Ressourcen genutzt?",
-      "l": ["POST", "GET", "PATCH", "DELETE"]
-    }
+    { "a": "Welches HTML-Element wird für den größten Titel verwendet?", "l": ["<h1>", "<head>", "<header>", "<h6>"] },
+    { "a": "Wofür steht CSS?", "l": ["Cascading Style Sheets", "Creative Style System", "Computer Shell Sheet", "Color Style Syntax"] },
+    { "a": "Welche Methode wird in REST meist zum Erstellen von Ressourcen genutzt?", "l": ["POST", "GET", "PATCH", "DELETE"] },
+    { "a": "Welche Programmiersprache wird primär für Web-Interaktionen genutzt?", "l": ["JavaScript", "Python", "C++", "Java"] },
+    { "a": "Was bedeutet das 'R' in Responsive Design?", "l": ["Reaktionsfähigkeit", "Robustheit", "Reinheit", "Raster"] },
+    { "a": "Welcher HTTP-Statuscode steht für 'Not Found'?", "l": ["404", "200", "500", "403"] },
+    { "a": "Womit bindet man eine externe CSS-Datei ein?", "l": ["<link>", "<style>", "<script>", "<css>"] },
+    { "a": "Was ist ein 'DOM'?", "l": ["Document Object Model", "Data Origin Master", "Digital Object Mode", "Desktop Output Method"] },
+    { "a": "Welche Einheit ist im CSS relativ zur Schriftgröße des Elternelements?", "l": ["em", "px", "cm", "vh"] },
+    { "a": "Wofür wird 'JSON' hauptsächlich genutzt?", "l": ["Datenaustausch", "Design-Definition", "Bildkompression", "Verschlüsselung"] }
   ],
   "deutsch": [
-    {
-      "a": "Was ist das Partizip II von 'laufen'?",
-      "l": ["gelaufen", "lief", "gelaufen sein", "läufig"]
-    },
-    {
-      "a": "Wer schrieb 'Faust'?",
-      "l": ["Johann Wolfgang von Goethe", "Friedrich Schiller", "Thomas Mann", "Franz Kafka"]
-    },
-    {
-      "a": "Welches Wort ist ein Synonym für 'obskur'?",
-      "l": ["unbekannt", "hell", "offensichtlich", "einfach"]
-    }
+    { "a": "Was ist das Partizip II von 'laufen'?", "l": ["gelaufen", "lief", "gelaufen sein", "läufig"] },
+    { "a": "Wer schrieb 'Faust'?", "l": ["Johann Wolfgang von Goethe", "Friedrich Schiller", "Thomas Mann", "Franz Kafka"] },
+    { "a": "Welches Wort ist ein Synonym für 'obskur'?", "l": ["unbekannt", "hell", "offensichtlich", "einfach"] },
+    { "a": "Wie nennt man das Hauptwort in der Grammatik noch?", "l": ["Substantiv", "Verb", "Adjektiv", "Adverb"] },
+    { "a": "Welches Satzzeichen leitet meist eine direkte Rede ein?", "l": ["Doppelpunkt", "Komma", "Semikolon", "Punkt"] },
+    { "a": "Was ist ein 'Oxymoron'?", "l": ["Ein innerer Widerspruch", "Eine Übertreibung", "Eine Frage ohne Antwort", "Ein Vergleich"] },
+    { "a": "In welcher Epoche schrieben Goethe und Schiller?", "l": ["Weimarer Klassik", "Barock", "Romantik", "Realismus"] },
+    { "a": "Was ist ein 'Teekesselchen'?", "l": ["Ein Wort mit zwei Bedeutungen", "Ein Kochutensil", "Ein Reimschema", "Eine Gedichtform"] },
+    { "a": "Wie viele Fälle (Kasus) gibt es im Deutschen?", "l": ["4", "3", "5", "6"] },
+    { "a": "Welcher Artikel gehört zum Wort 'Mädchen'?", "l": ["das", "die", "der", "keiner"] }
   ]
 }
