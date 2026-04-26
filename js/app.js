@@ -8,6 +8,7 @@ const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const Anworten = document.getElementById("answers");
 
+let currentcategory= "";
 let allQuestions = {};
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -62,13 +63,8 @@ function switchwebquiz()
 
 function showQuestion(category)
 {
-  /*currentQuestions = allQuestions[category];
-  currentQuestionIndex = 0;
-  frageObjekt = currentQuestions[currentQuestionIndex];
-  const questionElement = document.getElementById("question");
-  questionElement.innerText = frageObjekt.a;
-  */
- currentQuestion =  allQuestions[category][currentQuestionIndex];
+  currentcategory = category;
+  currentQuestion =  allQuestions[category][currentQuestionIndex];
   question.innerText = currentQuestion.a;
   ans1.value = currentQuestion.l[0];
   ans2.value = currentQuestion.l[1];
@@ -77,7 +73,36 @@ function showQuestion(category)
 
 }
 
+function Antwort1()
+{
+  currentQuestionIndex++;
+  showQuestion(currentcategory);
+}
+
+function Antwort2()
+{
+  currentQuestionIndex++;
+  showQuestion(currentcategory);
+}
+
+function Antwort3()
+{
+  currentQuestionIndex++;
+  showQuestion(currentcategory);
+}
+
+function Antwort4()
+{
+  currentQuestionIndex++;
+  showQuestion(currentcategory);
+}
+
+
 matheBtn.addEventListener("click", switchmathquiz);
 deutschBtn.addEventListener("click", switchdeutschquiz);
 informatikBtn.addEventListener("click", switchinformatikquiz);
 webBtn.addEventListener("click", switchwebquiz);
+ans1.addEventListener("click", Antwort1);
+ans2.addEventListener("click", Antwort2);
+ans3.addEventListener("click", Antwort3);
+ans4.addEventListener("click", Antwort4);
