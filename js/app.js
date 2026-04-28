@@ -83,6 +83,7 @@ function showQuestion(category)
 
 function Antwort1()
 { 
+  if(currentQuestionIndex>=10){return;}
   if(ans1.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
@@ -98,6 +99,7 @@ function Antwort1()
 
 function Antwort2()
 {
+  if(currentQuestionIndex>=10){return;}
   if(ans2.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
@@ -113,6 +115,7 @@ function Antwort2()
 
 function Antwort3()
 {
+  if(currentQuestionIndex>=10){return;}
   if(ans3.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
@@ -128,6 +131,7 @@ function Antwort3()
 
 function Antwort4()
 {
+  if(currentQuestionIndex>=10){return;}
   if(ans4.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
@@ -171,6 +175,8 @@ function ShowResult(Richtig)
     }
     
 }
+
+
 
 
 matheBtn.addEventListener("click", switchmathquiz);
