@@ -15,6 +15,7 @@ let allQuestions = {};
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let EndRes = 0;
+let Richtig = 0;
 const frageObjekt = currentQuestions[0];
 
 //Elemente für die Antworten
@@ -82,9 +83,9 @@ function showQuestion(category)
 
 function Antwort1()
 { 
-  let Richtig= 0; 
   if(ans1.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
+  Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
   {
     ShowResult(Richtig);
@@ -97,9 +98,9 @@ function Antwort1()
 
 function Antwort2()
 {
-  let Richtig= 0;
   if(ans2.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
+  Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
   {
     ShowResult(Richtig);
@@ -112,9 +113,9 @@ function Antwort2()
 
 function Antwort3()
 {
-  let Richtig= 0;
   if(ans3.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
+  Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
   {
     ShowResult(Richtig);
@@ -127,10 +128,9 @@ function Antwort3()
 
 function Antwort4()
 {
-  let Richtig=0;
   if(ans4.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
-  
+  Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
   {
     ShowResult(Richtig);

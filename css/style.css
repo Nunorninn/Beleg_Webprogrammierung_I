@@ -10,6 +10,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     text-align: center;
+    gap: 40px;
 }
 
 /* Styling für die Buttons */
@@ -98,4 +99,8 @@ input[type="button"]:active {
     color: #00d4ff;              /* Farbe ändert sich beim Hover */
     transform: translateX(-5px); /* Pfeil bewegt sich leicht nach links */
     background: none !important; /* Verhindert, dass er blau wird */
+}
+
+#quiz {
+    margin-bottom: 20px;
 }
