@@ -1,0 +1,20 @@
+{
+  "name": "Beleg Webprogrammierung I",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Lernprogramm",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "npm install -g live-server",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  }
+}
