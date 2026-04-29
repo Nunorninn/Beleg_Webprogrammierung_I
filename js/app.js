@@ -26,7 +26,7 @@ const ans4 = document.getElementById("answer4");
 
 async function loadQuestions() {
     try {
-        const response = await fetch('data/questions.json');
+        const response = await fetch('https://www.informatik.htw-dresden.de/~s88665/questions.json');
         allQuestions = await response.json();
         console.log("Daten geladen:", allQuestions);
     } catch (e) { console.error("JSON konnte nicht geladen werden", e); }
