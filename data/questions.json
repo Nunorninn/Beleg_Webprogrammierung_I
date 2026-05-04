@@ -1,15 +1,15 @@
 {
   "mathe": [
-    { "a": "Ableitung von f(x) = sin(x)", "l": ["cos(x)", "-cos(x)", "sin(x)", "tan(x)"] },
-    { "a": "Integral von 1/x dx", "l": ["ln|x|", "e^x", "x^2", "1"] },
-    { "a": "Was ist die Wurzel aus 144?", "l": ["12", "14", "11", "13"] },
-    { "a": "Was ist der Wert von Pi (auf 2 Dezimalstellen)?", "l": ["3,14", "3,12", "3,16", "3,18"] },
-    { "a": "Wie lautet der Satz des Pythagoras?", "l": ["a² + b² = c²", "a + b = c", "a² - b² = c²", "a * b = c"] },
-    { "a": "Was ist das Ergebnis von 7 * 8?", "l": ["56", "54", "62", "48"] },
-    { "a": "Was ist die Summe der Innenwinkel eines Dreiecks?", "l": ["180°", "90°", "360°", "270°"] },
-    { "a": "Was ist 2 hoch 10?", "l": ["1024", "512", "2048", "1000"] },
+    { "a": "Ableitung von f(x) = sin(x)", "l": ["$cos(x)$", "$-cos(x)$", "$sin(x)$", "$tan(x)$"] },
+    { "a": "Integral von 1/x dx", "l": ["$ln|x|$", "$e^x$", "$x^2$", "$1$"] },
+    { "a": "Was ist die Wurzel aus 144?", "l": ["$12$", "$14$", "$11$", "$13$"] },
+    { "a": "Was ist der Wert von Pi (auf 2 Dezimalstellen)?", "l": ["$3,14$", "$3,12$", "$3,16$", "$3,18$"] },
+    { "a": "Wie lautet der Satz des Pythagoras?", "l": ["$a² + b² = c²$", "$a + b = c$", "$a² - b² = c²$", "$a * b = c$"] },
+    { "a": "Was ist das Ergebnis von 7 * 8?", "l": ["$56$", "$54$", "$62$", "$48$"] },
+    { "a": "Was ist die Summe der Innenwinkel eines Dreiecks?", "l": ["$180°$", "$90°$", "$360°$", "$270°$"] },
+    { "a": "Was ist 2 hoch 10?", "l": ["$1024$", "$512$", "$2048$", "$1000$"] },
     { "a": "Wie nennt man eine Zahl, die nur durch 1 und sich selbst teilbar ist?", "l": ["Primzahl", "Gerade Zahl", "Rationale Zahl", "Quadratzahl"] },
-    { "a": "Was ist die Ableitung von x²?", "l": ["2x", "x", "2", "x³"] }
+    { "a": "Was ist die Ableitung von x²?", "l": ["$2x$", "$x$", "$2$", "$x³$"] }
   ],
   "informatik": [
     { "a": "Komplexität von Binary Search (Best Case)", "l": ["O(1)", "O(log n)", "O(n)", "O(n log n)"] },

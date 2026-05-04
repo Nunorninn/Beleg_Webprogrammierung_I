@@ -8,6 +8,9 @@
   <title>Lernprogramm</title>
   <link rel="stylesheet" href="css/progress.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
 </head>
 <body>
@@ -27,10 +30,10 @@
     
       <p id="question">Inhalt</p>
       <div id="answers">
-      <input type="button" id="answer1" value="Antwort 1">
-      <input type="button" id="answer2" value="Antwort 2">
-      <input type="button" id="answer3" value="Antwort 3">
-      <input type="button" id="answer4" value="Antwort 4">
+        <button id="ans1" onclick="Antwort1()"></button>
+        <button id="ans2" onclick="Antwort2()"></button>
+        <button id="ans3" onclick="Antwort3()"></button>
+        <button id="ans4" onclick="Antwort4()"></button>
       </div>
     </div>
 

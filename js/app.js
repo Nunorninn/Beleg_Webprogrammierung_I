@@ -19,14 +19,14 @@ let Richtig = 0;
 const frageObjekt = currentQuestions[0];
 
 //Elemente für die Antworten
-const ans1 = document.getElementById("answer1");
-const ans2 = document.getElementById("answer2");
-const ans3 = document.getElementById("answer3");
-const ans4 = document.getElementById("answer4");
+const ans1 = document.getElementById("ans1");
+const ans2 = document.getElementById("ans2");
+const ans3 = document.getElementById("ans3");
+const ans4 = document.getElementById("ans4");
 
 async function loadQuestions() {
     try {
-        const response = await fetch('https://www.informatik.htw-dresden.de/~s88665/questions.json');
+        const response = await fetch('data/questions.json'); //  https://www.informatik.htw-dresden.de/~s88665/questions.json
         allQuestions = await response.json();
         console.log("Daten geladen:", allQuestions);
     } catch (e) { console.error("JSON konnte nicht geladen werden", e); }
@@ -73,18 +73,25 @@ function showQuestion(category)
 {
   currentcategory = category;
   currentQuestion =  allQuestions[category][currentQuestionIndex];
-  question.innerText = currentQuestion.a;
-  ans1.value = currentQuestion.l[0];
-  ans2.value = currentQuestion.l[1];
-  ans3.value = currentQuestion.l[2];
-  ans4.value = currentQuestion.l[3];
+  question.innerHTML = currentQuestion.a;
+  ans1.innerHTML = currentQuestion.l[0];
+  ans2.innerHTML = currentQuestion.l[1];
+  ans3.innerHTML = currentQuestion.l[2];
+  ans4.innerHTML = currentQuestion.l[3];
+
+  renderMathInElement(document.getElementById("answers"), {
+        delimiters: [
+            {left: "$", right: "$", display: false}
+        ],
+        throwOnError: false
+    });
 
 }
 
 function Antwort1()
 { 
   if(currentQuestionIndex>=10){return;}
-  if(ans1.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
+  if(ans1.innerHTML==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
@@ -100,7 +107,7 @@ function Antwort1()
 function Antwort2()
 {
   if(currentQuestionIndex>=10){return;}
-  if(ans2.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
+  if(ans2.innerHTML==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
@@ -116,7 +123,7 @@ function Antwort2()
 function Antwort3()
 {
   if(currentQuestionIndex>=10){return;}
-  if(ans3.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
+  if(ans3.innerHTML==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
@@ -132,7 +139,7 @@ function Antwort3()
 function Antwort4()
 {
   if(currentQuestionIndex>=10){return;}
-  if(ans4.value==currentQuestion.l[0]) {EndRes++; Richtig=1;}
+  if(ans4.innerHTML==currentQuestion.l[0]) {EndRes++; Richtig=1;}
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
   if(currentQuestionIndex >= 10)
