@@ -183,6 +183,7 @@ function goBack() {
     currentQuestionIndex = 0;
     currentcategory = "";
     EndRes = 0;
+    Updateprogress(currentQuestionIndex);
     Progress.style.display = "none";
     console.log("Zurück zum Hauptmenü");
 }
