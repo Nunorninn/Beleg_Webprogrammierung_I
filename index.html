@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
 
 </head>
 <body>
@@ -23,12 +24,13 @@
       <input type="button" id="mathe" value="Mathematik">
       <input type="button" id="informatik" value="Informatik">
       <input type="button" id="web" value="Web">
-      <input type="button" id="deutsch" value="Deutsch">
+      <input type="button" id="musik" value="Musik">
     </div>
 
     <div id="quiz" style="display: none;">
     
       <p id="question">Inhalt</p>
+      <div id="vexflow" style="display: none;"></div>
       <div id="answers">
         <button id="ans1" ></button>
         <button id="ans2" ></button>

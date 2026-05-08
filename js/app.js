@@ -1,6 +1,6 @@
 
 const matheBtn = document.getElementById("mathe");
-const deutschBtn = document.getElementById("deutsch");
+const musikBtn = document.getElementById("musik");
 const informatikBtn = document.getElementById("informatik");
 const webBtn = document.getElementById("web");
 const selscreen = document.getElementById("category-selection");
@@ -9,6 +9,7 @@ const question = document.getElementById("question");
 const Anworten = document.getElementById("answers");
 const Result = document.getElementById("result");
 const Progress = document.getElementById("progress");
+const musicdisplay = document.getElementById("vexflow");
 
 let currentcategory= "";
 let allQuestions = {};
@@ -54,25 +55,26 @@ function shuffleAnswers(content)
   for (let i = content.length - 1; i > 0; i--)
   {
     const rand = Math.floor(Math.random() * (i+1));
-    [content[i], content[rand]] = [content[rand],content[i]]; 
+    [content[i], content[rand]] = [content[rand],content[i]];
   }
   return content;
 }
 
 async function loadQuestions() {
-    try {
-        const response = await fetch('data/questions.json'); //  https://www.informatik.htw-dresden.de/~s88665/questions.json
-        allQuestions = await response.json();
-        console.log("Daten geladen:", allQuestions);
-    } catch (e) { console.error("JSON konnte nicht geladen werden", e); }
+  try {
+    const response = await fetch('data/questions.json'); //  https://www.informatik.htw-dresden.de/~s88665/questions.json
+    allQuestions = await response.json();
+    console.log("Daten geladen:", allQuestions);
+  } catch (e) { console.error("JSON konnte nicht geladen werden", e); }
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM ist fertig geladen");
   
   loadQuestions();
-  // Eventlistener für Fächer 
+  // Eventlistener für Fächer
   matheBtn.addEventListener("click", switchmathquiz);
-  deutschBtn.addEventListener("click", switchdeutschquiz);
+  musikBtn.addEventListener("click", switchmusikquiz);
   informatikBtn.addEventListener("click", switchinformatikquiz);
   webBtn.addEventListener("click", switchwebquiz);
 
@@ -94,13 +96,14 @@ function switchmathquiz()
   showQuestion("mathe");
 }
 
-function switchdeutschquiz()
+function switchmusikquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  musicdisplay.style.display = "block";
   
-  showQuestion("deutsch");
+  showQuestion("musik");
 }
 
 function switchinformatikquiz()
@@ -135,14 +138,16 @@ function showQuestion(category)
   let shuffledAns = [currentQuestion.l[0],currentQuestion.l[1],currentQuestion.l[2],currentQuestion.l[3]];
   shuffleAnswers(shuffledAns);
   question.innerHTML = currentQuestion.a;
+
   if (shuffledAns.includes('$'))
   {
       ans1.innerHTML = shuffledAns[0];
   } else {
     ans1.innerText = shuffledAns[0];
   }
-
   ans1.setAttribute("data-raw", shuffledAns[0]);
+
+
   if (shuffledAns.includes('$'))
   {
       ans2.innerHTML = shuffledAns[1];
@@ -150,14 +155,18 @@ function showQuestion(category)
     ans2.innerText = shuffledAns[1];
   }
   ans2.setAttribute("data-raw", shuffledAns[1]);
-    if (shuffledAns.includes('$'))
+
+
+  if (shuffledAns.includes('$'))
   {
       ans3.innerHTML = shuffledAns[2];
   } else {
     ans3.innerText = shuffledAns[2];
   }
   ans3.setAttribute("data-raw", shuffledAns[2]);
-    if (shuffledAns.includes('$'))
+
+
+  if (shuffledAns.includes('$'))
   {
       ans4.innerHTML = shuffledAns[3];
   } else {
@@ -166,11 +175,11 @@ function showQuestion(category)
   ans4.setAttribute("data-raw", shuffledAns[3]);
 
   renderMathInElement(document.getElementById("answers"), {
-        delimiters: [
-            {left: "$", right: "$", display: false}
-        ],
-        throwOnError: false
-    });
+    delimiters: [
+      {left: "$", right: "$", display: false}
+    ],
+    throwOnError: false
+  });
 
 }
 
@@ -180,6 +189,7 @@ function goBack() {
     quiz.style.display = "none";
     selscreen.style.display = "block";
     Result.style.display = "none";
+    musicdisplay.style.display = "none";
     currentQuestionIndex = 0;
     currentcategory = "";
     EndRes = 0;
@@ -206,6 +216,29 @@ function ShowResult(Richtig)
       EndRes--;
     }
     
+}
+
+function DrawNote(musicdisplay, note) {
+  const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
+  const div = document.getElementById(musicdisplay);
+  div.innerHTML = ""; // Clear previous rendering
+
+  const renderer = new Renderer(div, Renderer.Backends.SVG);
+  renderer.resize(500, 200);
+
+  const context = renderer.getContext();
+  const stave = new Stave(10, 40, 400);
+  stave.addClef("treble").setContext(context).draw();
+
+  const notes = notation.split(', ').map(n => {
+    return new StaveNote({ keys: [n.split('/')[0]], duration: n.split('/')[1] });
+  });
+
+  const voice = new Voice({ num_beats: notes.length, beat_value: 4 });
+  voice.addTickables(notes);
+
+  new Formatter().joinVoices([voice]).format([voice], 150);
+  voice.draw(context, stave);
 }
 
 
