@@ -35,16 +35,56 @@
     { "a": "Welche Einheit ist im CSS relativ zur Schriftgröße des Elternelements?", "l": ["em", "px", "cm", "vh"] },
     { "a": "Wofür wird 'JSON' hauptsächlich genutzt?", "l": ["Datenaustausch", "Design-Definition", "Bildkompression", "Verschlüsselung"] }
   ],
-  "deutsch": [
-    { "a": "Was ist das Partizip II von 'laufen'?", "l": ["gelaufen", "lief", "gelaufen sein", "läufig"] },
-    { "a": "Wer schrieb 'Faust'?", "l": ["Johann Wolfgang von Goethe", "Friedrich Schiller", "Thomas Mann", "Franz Kafka"] },
-    { "a": "Welches Wort ist ein Synonym für 'obskur'?", "l": ["unbekannt", "hell", "offensichtlich", "einfach"] },
-    { "a": "Wie nennt man das Hauptwort in der Grammatik noch?", "l": ["Substantiv", "Verb", "Adjektiv", "Adverb"] },
-    { "a": "Welches Satzzeichen leitet meist eine direkte Rede ein?", "l": ["Doppelpunkt", "Komma", "Semikolon", "Punkt"] },
-    { "a": "Was ist ein 'Oxymoron'?", "l": ["Ein innerer Widerspruch", "Eine Übertreibung", "Eine Frage ohne Antwort", "Ein Vergleich"] },
-    { "a": "In welcher Epoche schrieben Goethe und Schiller?", "l": ["Weimarer Klassik", "Barock", "Romantik", "Realismus"] },
-    { "a": "Was ist ein 'Teekesselchen'?", "l": ["Ein Wort mit zwei Bedeutungen", "Ein Kochutensil", "Ein Reimschema", "Eine Gedichtform"] },
-    { "a": "Wie viele Fälle (Kasus) gibt es im Deutschen?", "l": ["4", "3", "5", "6"] },
-    { "a": "Welcher Artikel gehört zum Wort 'Mädchen'?", "l": ["das", "die", "der", "keiner"] }
+  "musik": [
+{
+      "a": "Welche Note ist hier als Viertelnote dargestellt?",
+      "notation": "C4/q, G4/q, A4/q, F4/q",
+      "l": ["C", "D", "E", "G"]
+    },
+    {
+      "a": "Welche Note wird hier als halbe Note (2 Schläge) gezeigt?",
+      "notation": "E4/h, G4/h",
+      "l": ["E", "F", "G", "A"]
+    },
+    {
+      "a": "Erkenne die Tonfolge: Was ist die letzte Note?",
+      "notation": "C4/q, D4/q, E4/q, F4/q",
+      "l": ["F", "G", "E", "D"]
+    },
+    {
+      "a": "Welcher Ton liegt hier auf der zweiten Linie von unten?",
+      "notation": "G4/w",
+      "l": ["G", "B", "D", "F"]
+    },
+    {
+      "a": "Wie heißt der höchste Ton in dieser Folge?",
+      "notation": "C4/q, E4/q, G4/q, C5/q",
+      "l": ["Hohes C", "G", "E", "A"]
+    },
+    {
+      "a": "Welche Note befindet sich auf der ersten Hilfslinie oben?",
+      "notation": "A5/w",
+      "l": ["A", "C", "G", "F"]
+    },
+    {
+      "a": "Benenne die erste Note dieses Taktes:",
+      "notation": "B4/h, G4/h",
+      "l": ["H", "A", "C", "G"]
+    },
+    {
+      "a": "Welche Note liegt im untersten Zwischenraum?",
+      "notation": "F4/w",
+      "l": ["F", "E", "D", "G"]
+    },
+    {
+      "a": "Welche Note liegt genau zwischen den Linien 2 und 3?",
+      "notation": "A4/w",
+      "l": ["A", "H", "C", "G"]
+    },
+    {
+      "a": "Was ist die tiefste Note in dieser Reihe?",
+      "notation": "G3/q, C4/q, E4/q, G4/q",
+      "l": ["Kleines G", "C", "E", "F"]
+    }
   ]
 }

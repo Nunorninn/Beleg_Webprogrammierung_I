@@ -174,6 +174,16 @@ function showQuestion(category)
   }
   ans4.setAttribute("data-raw", shuffledAns[3]);
 
+    
+    if (category == "musik") {
+        musicdisplay.style.display = "block";
+        musicdisplay.innerHTML = ""; // Alten Inhalt löschen
+        drawNote("vexflow", currentQuestion.notation);
+        console.log("Musikfrage angezeigt, Notation:", currentQuestion.notation);
+    } else {
+        musicContainer.style.display = "none";
+    }
+
   renderMathInElement(document.getElementById("answers"), {
     delimiters: [
       {left: "$", right: "$", display: false}
@@ -218,27 +228,41 @@ function ShowResult(Richtig)
     
 }
 
-function DrawNote(musicdisplay, note) {
-  const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
-  const div = document.getElementById(musicdisplay);
-  div.innerHTML = ""; // Clear previous rendering
+function drawNote(vexFlow, notation) {
+    const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
 
-  const renderer = new Renderer(div, Renderer.Backends.SVG);
-  renderer.resize(500, 200);
+    const div = document.getElementById(vexFlow);
+    div.innerHTML = ""; // Wichtig: Alten Inhalt löschen!
 
-  const context = renderer.getContext();
-  const stave = new Stave(10, 40, 400);
-  stave.addClef("treble").setContext(context).draw();
+    const renderer = new Renderer(div, Renderer.Backends.SVG);
+    renderer.resize(250, 150); 
+    const context = renderer.getContext();
 
-  const notes = notation.split(', ').map(n => {
-    return new StaveNote({ keys: [n.split('/')[0]], duration: n.split('/')[1] });
-  });
+    // Notenzeile zeichnen
+    const stave = new Stave(10, 40, 200);
+    stave.addClef("treble").setContext(context).draw();
 
-  const voice = new Voice({ num_beats: notes.length, beat_value: 4 });
-  voice.addTickables(notes);
+    // Noten parsen
+    const notes = notation.split(',').map(n => {
+        const parts = n.trim().split('/'); // n ist z.B. "C4/q"
+        const key = parts[0];  // "C4"
+        const duration = parts[1]; // "q"
 
-  new Formatter().joinVoices([voice]).format([voice], 150);
-  voice.draw(context, stave);
+        // DER FIX: keys muss ein Array sein, z.B. ["c/4"]
+        // Und VexFlow bevorzugt oft Kleinschreibung für die Notennamen
+        return new StaveNote({
+            keys: [key.toLowerCase().replace(/(\d)/, "/$1")], 
+            duration: duration
+        });
+    });
+
+    // Eine "Voice" (Stimme) erstellen, um die Noten zu halten
+    const voice = new Voice({ num_beats: notes.length, beat_value: 4 });
+    voice.addTickables(notes);
+
+    // Formatieren und Zeichnen
+    new Formatter().joinVoices([voice]).format([voice], 150);
+    voice.draw(context, stave);
 }
 
 
