@@ -1,31 +1,23 @@
 <?php
-$url = " https://idefix.informatik.htw-dresden.de:8888/api/quizzes/10";
-$user = "1@gmail.com";
-$password = "secret";
+$id = isset($_GET['id']) ? $_GET['id'] : 1; // Falls keine ID übergeben wurde, nimm die 1
 
-// 1. curl Initialisieren
+$user = "test@gmail.com";
+$pass = "secret";
+// Wir hängen die ID dynamisch an die URL an
+$url = "https://idefix.informatik.htw-dresden.de:8888/api/quizzes/" . $id;
+
 $ch = curl_init();
-
-// 2. Optionen setzen
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Ergebnis als String zurückgeben
-curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); // Basic Auth aktivieren
-curl_setopt($ch, CURLOPT_USERPWD, "$user:$password"); // Zugangsdaten setzen
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); // GET Methode (Standard)
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_USERPWD, "$user:$pass");
+curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
-// 3. Ausführen
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+// Wichtig für HTTPS-Anfragen (falls das Zertifikat auf dem Server zickt)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 
-// 4. Fehlerprüfung
-if(curl_errno($ch)) {
-    echo 'Fehler: ' . curl_error($ch);
-} else {
-    // Ergebnis ausgeben (wird an dein JS gesendet)
-    header('Content-Type: application/json');
-    echo $response;
-}
-
-// 5. Schließen
+$output = curl_exec($ch);
 curl_close($ch);
+
+header('Content-Type: application/json');
+echo $output;
 ?>

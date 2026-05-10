@@ -19,6 +19,7 @@ let EndRes = 0;
 let Richtig = 0;
 let correctAnswerHTML = "";
 const frageObjekt = currentQuestions[0];
+let isServerQuestion = false;
 
 //Elemente für die Antworten
 const ans1 = document.getElementById("ans1");
@@ -45,8 +46,17 @@ function checkAnswer(button) {
 
   if (currentQuestionIndex >= 10) {
       ShowResult(Richtig);
-  } else {
-    showQuestion(currentcategory);
+  } 
+  else 
+  { 
+    if (isServerQuestion) 
+    {
+      loadServerQuestions();
+    }
+    else 
+    {
+      showQuestion(currentcategory);
+    }
   }
 }
 
@@ -115,24 +125,45 @@ function switchinformatikquiz()
   showQuestion("informatik");
 }
 
-function switchwebquiz()
+async function switchwebquiz()
 {
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  isServerQuestion = true;
+  currentQuestionIndex = 0;
   
-  showQuestion("web");
+  await loadServerQuestions();
+}
+
+async function loadServerQuestions()
+{
+  try {
+    const ApiIndx = currentQuestionIndex +1; // +1 da die API bei 1 beginnt
+    const reponse = await fetch(`data/getWebQuest.php?id=${ApiIndx}`);
+    const Exdata = await reponse.json();
+
+    const formatQuestion = {
+      a: Exdata.text,
+      l: Exdata.options};
+
+      showQuestion("web", formatQuestion);
+  } catch (e) { console.error("Serverfragen konnten nicht geladen werden", e); }
 }
 
 
 
 
 
-function showQuestion(category)
+function showQuestion(category, formatQuestion = null)
 {
 
   currentcategory = category;
-  currentQuestion =  allQuestions[category][currentQuestionIndex];
+  if (formatQuestion) {
+    currentQuestion = formatQuestion;
+  } else {
+    currentQuestion = allQuestions[category][currentQuestionIndex];
+  }
   correctAnswerHTML = currentQuestion.l[0];
 
   let shuffledAns = [currentQuestion.l[0],currentQuestion.l[1],currentQuestion.l[2],currentQuestion.l[3]];
@@ -181,7 +212,7 @@ function showQuestion(category)
         drawNote("vexflow", currentQuestion.notation);
         console.log("Musikfrage angezeigt, Notation:", currentQuestion.notation);
     } else {
-        musicContainer.style.display = "none";
+        musicdisplay.style.display = "none";
     }
 
   renderMathInElement(document.getElementById("answers"), {

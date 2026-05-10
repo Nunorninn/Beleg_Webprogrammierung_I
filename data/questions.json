@@ -23,18 +23,6 @@
     { "a": "Wofür steht 'URL'?", "l": ["Uniform Resource Locator", "Universal Radio Link", "User Response Layer", "Unit Registry Line"] },
     { "a": "Welches Zeichen beendet in Java/C++ meist eine Anweisung?", "l": [";", ":", ".", "!"] }
   ],
-  "web": [
-    { "a": "Welches HTML-Element wird für den größten Titel verwendet?", "l": ["<h1>", "<head>", "<header>", "<h6>"] },
-    { "a": "Wofür steht CSS?", "l": ["Cascading Style Sheets", "Creative Style System", "Computer Shell Sheet", "Color Style Syntax"] },
-    { "a": "Welche Methode wird in REST meist zum Erstellen von Ressourcen genutzt?", "l": ["POST", "GET", "PATCH", "DELETE"] },
-    { "a": "Welche Programmiersprache wird primär für Web-Interaktionen genutzt?", "l": ["JavaScript", "Python", "C++", "Java"] },
-    { "a": "Was bedeutet das 'R' in Responsive Design?", "l": ["Reaktionsfähigkeit", "Robustheit", "Reinheit", "Raster"] },
-    { "a": "Welcher HTTP-Statuscode steht für 'Not Found'?", "l": ["404", "200", "500", "403"] },
-    { "a": "Womit bindet man eine externe CSS-Datei ein?", "l": ["<link>", "<style>", "<script>", "<css>"] },
-    { "a": "Was ist ein 'DOM'?", "l": ["Document Object Model", "Data Origin Master", "Digital Object Mode", "Desktop Output Method"] },
-    { "a": "Welche Einheit ist im CSS relativ zur Schriftgröße des Elternelements?", "l": ["em", "px", "cm", "vh"] },
-    { "a": "Wofür wird 'JSON' hauptsächlich genutzt?", "l": ["Datenaustausch", "Design-Definition", "Bildkompression", "Verschlüsselung"] }
-  ],
   "musik": [
 {
       "a": "Welche Note ist hier als Viertelnote dargestellt?",

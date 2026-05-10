@@ -6,7 +6,11 @@ const ASSETS = [
     'js/app.js',
     'js/progressbar.js',
     'data/questions.json',
-    'data/HTW.png'
+    'data/HTW.png',
+    'https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js',
+    'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
+    'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
+    'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js'
 ];
 
 //Offline Inhalt für den Cache
