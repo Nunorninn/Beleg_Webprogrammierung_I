@@ -13,12 +13,11 @@ const musicdisplay = document.getElementById("vexflow");
 
 let currentcategory= "";
 let allQuestions = {};
-let currentQuestions = [];
+let currentQuestion = [];
 let currentQuestionIndex = 0;
 let EndRes = 0;
 let Richtig = 0;
 let correctAnswerHTML = "";
-const frageObjekt = currentQuestions[0];
 let isServerQuestion = false;
 
 //Elemente für die Antworten
@@ -161,30 +160,54 @@ async function loadServerQuestions()
 {
   try {
     const ApiIndx = currentQuestionIndex +1; // +1 da die API bei 1 beginnt
-    const reponse = await fetch(`data/getWebQuest.php?id=${ApiIndx}`);
-    const Exdata = await reponse.json();
+    const response = await fetch(`data/getWebQuest.php?id=${ApiIndx}`);
+    const text = await response.text();
+    console.log("Was kommt an?: ", text);
 
-    const formatQuestion = {
+    if(!response.ok) throw new Error("Netzwerk-Antwort war negativ!");
+
+    const Exdata = JSON.parse(text);
+    if (Exdata && Exdata.options)
+    {
+      const formatQuestion = {
       a: Exdata.text,
       l: Exdata.options};
-
+      isServerQuestion = true;
+    
       showQuestion("web", formatQuestion);
-  } catch (e) { console.error("Serverfragen konnten nicht geladen werden", e); }
+    } else {
+      console.error("Datenformat war ungültig!:" , Exdata);
+    }
+  } catch (e) { 
+    console.error("Serverfragen konnten nicht geladen werden", e); 
+    question.innerText ="Fehler beim laden der Server-Frage.";
+  }
 }
 
 
 
 
 
-function showQuestion(category, formatQuestion = null)
+function showQuestion(category, Exdata = null)
 {
-
   currentcategory = category;
-  if (formatQuestion) {
-    currentQuestion = formatQuestion;
-  } else {
+
+  if(Exdata){
+    currentQuestion = Exdata;
+
+  } else if (allQuestions[category] && allQuestions[category][currentQuestionIndex]){
     currentQuestion = allQuestions[category][currentQuestionIndex];
+    isServerQuestion = false;
+  } else {
+    console.error("Keine Frage gefunden!:" , category , currentQuestionIndex);
+    return;
   }
+
+  if(!currentQuestion.l) {
+    console.error("Die Eigentschaft .l fehlt im Objekt:" , currentQuestion);
+    return;
+  }
+
   correctAnswerHTML = currentQuestion.l[0];
 
   let shuffledAns = [currentQuestion.l[0],currentQuestion.l[1],currentQuestion.l[2],currentQuestion.l[3]];

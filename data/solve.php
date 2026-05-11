@@ -3,9 +3,9 @@
 $id = $_GET['id'];
 $index = (int)$_GET['index'];
 
-$user = "test@gmail.com";
+$user = "1@gmail.com";
 $pass = "secret";
-$url = "https://test.com:8888/api/quizzes/$id/solve";
+$url = "https://idefix.informatik.htw-dresden.de:8888/api/quizzes/$id/solve";
 
 $data = json_encode([$index]);
 $ch = curl_init();

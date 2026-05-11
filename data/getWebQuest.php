@@ -1,7 +1,7 @@
 <?php
 $id = isset($_GET['id']) ? $_GET['id'] : 1; // Falls keine ID übergeben wurde, nimm die 1
 
-$user = "test@gmail.com";
+$user = "1@gmail.com";
 $pass = "secret";
 // Wir hängen die ID dynamisch an die URL an
 $url = "https://idefix.informatik.htw-dresden.de:8888/api/quizzes/" . $id;
