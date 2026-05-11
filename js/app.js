@@ -27,18 +27,39 @@ const ans2 = document.getElementById("ans2");
 const ans3 = document.getElementById("ans3");
 const ans4 = document.getElementById("ans4");
 
-function checkAnswer(button) {
+async function checkAnswer(button) {
   if (currentQuestionIndex >= 10) return;
 
-  const selAnsw = button.getAttribute("data-raw"); // KI gegeben um den Inhalt zu checken wenn es mit Katex verändert wurde
+  if (isServerQuestion) {
+    const selIndx = button.getAttribute("data-index");
+    const apiId = currentQuestionIndex + 1;
 
-  if (selAnsw == correctAnswerHTML) {
-    EndRes++;
-    Richtig = 1;
-    console.log("Antwort war Richtig!");
+    try {
+      const response = await fetch(`data/solve.php?id=${apiId}&answer=${selIndx}`);
+      const result = await response.json();
+      if (result.correct || result.correct == "true") {
+        EndRes++;
+        Richtig = 1;
+        console.log("Antwort war Richtig!");
+      } else {
+        Richtig = 0;
+        console.log("Antwort war falsch!");
+      }
+    } catch (e) {
+      console.error("Fehler beim Überprüfen der Antwort", e);
+    }
   } else {
-    Richtig = 0;
-    console.log("Antwort war falsch!");
+
+    const selAnsw = button.getAttribute("data-raw"); // KI gegeben um den Inhalt zu checken wenn es mit Katex verändert wurde
+
+    if (selAnsw == correctAnswerHTML) {
+      EndRes++;
+      Richtig = 1;
+      console.log("Antwort war Richtig!");
+    } else {
+      Richtig = 0;
+      console.log("Antwort war falsch!");
+    }
   }
 
   currentQuestionIndex++;
