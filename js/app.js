@@ -30,12 +30,13 @@ async function checkAnswer(button) {
   if (currentQuestionIndex >= 10) return;
 
   if (isServerQuestion) {
-    const selIndx = button.getAttribute("data-index");
+    const selIndx = Exdata.options.indexOf(button.getAttribute("data-raw"));
     const apiId = currentQuestionIndex + 1;
 
     try {
       const response = await fetch(`data/solve.php?id=${apiId}&answer=${selIndx}`);
       const result = await response.json();
+      console.log("API-Antwort:", result);
       if (result.correct || result.correct == "true") {
         EndRes++;
         Richtig = 1;
