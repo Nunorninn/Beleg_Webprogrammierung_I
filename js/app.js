@@ -30,14 +30,22 @@ async function checkAnswer(button) {
   if (currentQuestionIndex >= 10) return;
 
   if (isServerQuestion) {
-    const selIndx = Exdata.options.indexOf(button.getAttribute("data-raw"));
+    
+    const Text = button.getAttribute("data-raw");
+    const selIndx = currentQuestion.l.indexOf(Text);
+    console.log(selIndx);
     const apiId = currentQuestionIndex + 1;
 
     try {
-      const response = await fetch(`data/solve.php?id=${apiId}&answer=${selIndx}`);
-      const result = await response.json();
-      console.log("API-Antwort:", result);
-      if (result.correct || result.correct == "true") {
+      const response = await fetch(`data/solve.php?id=${apiId}&index=${selIndx}`);
+      const debugData = await response.json();
+
+    console.log("--- PHP DEBUG LOG ---");
+    console.log("Gesendeter Index als JSON:", debugData.gesendete_daten);
+    console.log("An URL:", debugData.ziel_url);
+    console.log("Antwort vom API-Server:", debugData.api_antwort_roh);
+      console.log("API-Antwort:", debugData);
+      if (debugData.success || debugData.success == "true") {
         EndRes++;
         Richtig = 1;
         console.log("Antwort war Richtig!");
@@ -80,6 +88,7 @@ async function checkAnswer(button) {
     }
   }
 }
+
 
 function shuffleAnswers(content)
 {
@@ -160,6 +169,7 @@ async function switchwebquiz()
 async function loadServerQuestions()
 {
   try {
+    Exdata = "";
     const ApiIndx = currentQuestionIndex +1; // +1 da die API bei 1 beginnt
     const response = await fetch(`data/getWebQuest.php?id=${ApiIndx}`);
     const text = await response.text();
@@ -167,7 +177,7 @@ async function loadServerQuestions()
 
     if(!response.ok) throw new Error("Netzwerk-Antwort war negativ!");
 
-    const Exdata = JSON.parse(text);
+    Exdata = JSON.parse(text);
     if (Exdata && Exdata.options)
     {
       const formatQuestion = {
