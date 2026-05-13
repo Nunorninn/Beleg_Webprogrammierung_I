@@ -1,7 +1,8 @@
 .progress {
-  margin: 0 auto;
-  margin-left: -3%;
+  margin-top: 50px;
+  margin-bottom: 20px; /* Abstand zu den Buttons unten */
   width: 100%;
+  max-width: 600px;
 }
 
 .progress {
@@ -11,6 +12,7 @@
   border-radius: 6px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
 .progress-bar {
@@ -30,4 +32,5 @@
   transition-property: width, background-color;
   -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+ 
 }

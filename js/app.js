@@ -39,11 +39,6 @@ async function checkAnswer(button) {
     try {
       const response = await fetch(`data/solve.php?id=${apiId}&index=${selIndx}`);
       const debugData = await response.json();
-
-    console.log("--- PHP DEBUG LOG ---");
-    console.log("Gesendeter Index als JSON:", debugData.gesendete_daten);
-    console.log("An URL:", debugData.ziel_url);
-    console.log("Antwort vom API-Server:", debugData.api_antwort_roh);
       console.log("API-Antwort:", debugData);
       if (debugData.success || debugData.success == "true") {
         EndRes++;
@@ -334,7 +329,6 @@ function drawNote(vexFlow, notation) {
         const key = parts[0];  // "C4"
         const duration = parts[1]; // "q"
 
-        // DER FIX: keys muss ein Array sein, z.B. ["c/4"]
         // Und VexFlow bevorzugt oft Kleinschreibung für die Notennamen
         return new StaveNote({
             keys: [key.toLowerCase().replace(/(\d)/, "/$1")], 
