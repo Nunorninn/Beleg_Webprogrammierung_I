@@ -56,11 +56,29 @@ async function checkAnswer(button) {
     const selAnsw = button.getAttribute("data-raw"); // KI gegeben um den Inhalt zu checken wenn es mit Katex verändert wurde
 
     if (selAnsw == correctAnswerHTML) {
+      ans1.style.backgroundColor = "#007bff";
+      ans2.style.backgroundColor = "#007bff";
+      ans3.style.backgroundColor = "#007bff";
+      ans4.style.backgroundColor = "#007bff";
+      button.style.backgroundColor = "#00FF00";
+      setTimeout(() => {
+        button.style.backgroundColor = "#007bff";
+    }, 1000);
+      
+
       EndRes++;
       Richtig = 1;
       console.log("Antwort war Richtig!");
     } else {
       Richtig = 0;
+      ans1.style.backgroundColor = "#007bff";
+      ans2.style.backgroundColor = "#007bff";
+      ans3.style.backgroundColor = "#007bff";
+      ans4.style.backgroundColor = "#007bff";
+      button.style.backgroundColor = "#8B0000";
+      setTimeout(() => {
+        button.style.backgroundColor = "#007bff";
+    }, 1000);
       console.log("Antwort war falsch!");
     }
   }
