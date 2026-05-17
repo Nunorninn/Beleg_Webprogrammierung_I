@@ -331,36 +331,43 @@ function drawNote(vexFlow, notation) {
     const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
 
     const div = document.getElementById(vexFlow);
-    div.innerHTML = ""; // Wichtig: Alten Inhalt löschen!
+    if (!div) return;
+    div.innerHTML = ""; 
 
     const renderer = new Renderer(div, Renderer.Backends.SVG);
     renderer.resize(250, 150); 
     const context = renderer.getContext();
 
-    // Notenzeile zeichnen
-    const stave = new Stave(10, 40, 200);
+    // 1. Notenzeile etwas tiefer ansetzen (y: 40 ist gut)
+    const stave = new Stave(10, 40, 230);
     stave.addClef("treble").setContext(context).draw();
 
-    // Noten parsen
+    // 2. Noten parsen
     const notes = notation.split(',').map(n => {
-        const parts = n.trim().split('/'); // n ist z.B. "C4/q"
-        const key = parts[0];  // "C4"
-        const duration = parts[1]; // "q"
+        const parts = n.trim().split('/'); 
+        let key = parts[0];      // z.B. "C4"
+        const duration = parts[1]; // z.B. "q"
 
-        // Und VexFlow bevorzugt oft Kleinschreibung für die Notennamen
+        // Formatierung von "C4" zu "c/4"
+        const formattedKey = key.toLowerCase().replace(/(\d)/, "/$1");
+
         return new StaveNote({
-            keys: [key.toLowerCase().replace(/(\d)/, "/$1")], 
+            clef: "treble",
+            keys: [formattedKey], 
             duration: duration
         });
     });
+    try {
+        const voice = new Voice({ num_beats: 4, beat_value: 4 });
+        voice.setStrict(false); 
+        voice.addTickables(notes);
 
-    // Eine "Voice" (Stimme) erstellen, um die Noten zu halten
-    const voice = new Voice({ num_beats: notes.length, beat_value: 4 });
-    voice.addTickables(notes);
-
-    // Formatieren und Zeichnen
-    new Formatter().joinVoices([voice]).format([voice], 150);
-    voice.draw(context, stave);
+        // 4. Formatieren und Zeichnen
+        new Formatter().joinVoices([voice]).format([voice], 150);
+        voice.draw(context, stave);
+    } catch (e) {
+        console.error("VexFlow Error:", e);
+    }
 }
 
 
