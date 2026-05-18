@@ -10,6 +10,7 @@ const Anworten = document.getElementById("answers");
 const Result = document.getElementById("result");
 const Progress = document.getElementById("progress");
 const musicdisplay = document.getElementById("vexflow");
+const backBtn = document.getElementById("btn-back");
 
 let currentcategory= "";
 let allQuestions = {};
@@ -145,6 +146,8 @@ function switchmathquiz()
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  backBtn.style.display = "block";
+  
 
   showQuestion("mathe");
 }
@@ -154,6 +157,7 @@ function switchmusikquiz()
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  backBtn.style.display = "block";
   musicdisplay.style.display = "block";
   
   showQuestion("musik");
@@ -164,6 +168,7 @@ function switchinformatikquiz()
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  backBtn.style.display = "block";
   
   showQuestion("informatik");
 }
@@ -173,6 +178,7 @@ async function switchwebquiz()
   selscreen.style.display = "none";
   quiz.style.display = "block";
   Progress.style.display = "block";
+  backBtn.style.display = "block";
   isServerQuestion = true;
   currentQuestionIndex = 0;
   
@@ -296,7 +302,7 @@ function showQuestion(category, Exdata = null)
 
 function goBack() {
     quiz.style.display = "none";
-    selscreen.style.display = "block";
+    selscreen.style.display = "grid";
     Result.style.display = "none";
     musicdisplay.style.display = "none";
     currentQuestionIndex = 0;
@@ -304,6 +310,7 @@ function goBack() {
     EndRes = 0;
     Updateprogress(currentQuestionIndex);
     Progress.style.display = "none";
+    backBtn.style.display = "none";
     console.log("Zurück zum Hauptmenü");
 }
 

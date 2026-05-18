@@ -106,6 +106,11 @@ input[type="button"]:active {
     margin-bottom: 20px;
 }
 
+#app img {
+    display: block;
+    margin: 0 auto 20px auto; /* Zentriert das Bild innerhalb des Containers */
+}
+
 #app {
     width: 90%;
     max-width: 600px;
@@ -118,4 +123,25 @@ input[type="button"]:active {
 #question {
     font-size: 22px;
     font-weight: 600;
+}
+
+#category-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* Platz dazwischen */
+    max-width: 600px;
+    margin: 0 auto 20px auto
+}
+
+#category-selection input[type="button"] {
+    align-items: center;
+    padding: 35px 75px;
+    font-size: 20px;
+    background-color: #007bff; /* Dein Blau */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Schattierung */
+    transition: background 0.3s;
 }
