@@ -45,9 +45,26 @@ async function checkAnswer(button) {
         EndRes++;
         Richtig = 1;
         console.log("Antwort war Richtig!");
+              ans1.style.backgroundColor = "#007bff";
+      ans2.style.backgroundColor = "#007bff";
+      ans3.style.backgroundColor = "#007bff";
+      ans4.style.backgroundColor = "#007bff";
+      button.style.backgroundColor = "#00FF00";
+      setTimeout(() => {
+        button.style.backgroundColor = "#007bff";
+    }, 1000);
+
       } else {
         Richtig = 0;
         console.log("Antwort war falsch!");
+              ans1.style.backgroundColor = "#007bff";
+      ans2.style.backgroundColor = "#007bff";
+      ans3.style.backgroundColor = "#007bff";
+      ans4.style.backgroundColor = "#007bff";
+      button.style.backgroundColor = "#8B0000";
+      setTimeout(() => {
+        button.style.backgroundColor = "#007bff";
+    }, 1000);
       }
     } catch (e) {
       console.error("Fehler beim Überprüfen der Antwort", e);
@@ -83,7 +100,6 @@ async function checkAnswer(button) {
       console.log("Antwort war falsch!");
     }
   }
-
   currentQuestionIndex++;
   Updateprogress(currentQuestionIndex);
 
