@@ -319,7 +319,8 @@ function ShowResult(Richtig)
     Result.style.display = "block";
     if(currentQuestionIndex <= 10)
     {
-      Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!"; 
+      Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!";
+      saveHighscore(prompt("Gib deinen Namen für die Highscore ein:"), EndRes, currentcategory);
     }
     else if (currentQuestionIndex > 10 && Richtig == 1)
     {
@@ -377,6 +378,33 @@ function drawNote(vexFlow, notation) {
     }
 }
 
+//// Highscore-Funktionalität ////
+
+async function saveHighscore(playerName, finalScore, currentCategory) {
+    const response = await fetch('data/saveHighscore.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: playerName,
+            score: finalScore,
+            category: currentCategory
+        })
+    });
+
+    const result = await response.json();
+    console.log(result.message);
+}
+
+// Top 10 vom Server holen
+async function loadHighscores(category) {
+    const response = await fetch(`data/getHighSC.php?category=${category}`);
+    const scores = await response.json();
+    
+    console.log("Highscores für", category, scores);
+    // Hier kannst du dann dein HTML aktualisieren, z.B. eine Tabelle füllen
+}
 
 
 
