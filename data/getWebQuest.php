@@ -13,10 +13,9 @@ curl_setopt($ch, CURLOPT_USERPWD, "$user:$pass");
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
 // Wichtig für HTTPS-Anfragen (falls das Zertifikat auf dem Server zickt)
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 $output = curl_exec($ch);
-curl_close($ch);
 
 header('Content-Type: application/json');
 echo $output;

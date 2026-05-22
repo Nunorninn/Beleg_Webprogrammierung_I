@@ -44,7 +44,6 @@ $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 if (curl_errno($ch)) {
     $error_msg = curl_error($ch);
 }
-curl_close($ch);
 
 // Rückgabe an JavaScript
 header('Content-Type: application/json');
