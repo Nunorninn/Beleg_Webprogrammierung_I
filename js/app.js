@@ -12,6 +12,8 @@ const Progress = document.getElementById("progress");
 const musicdisplay = document.getElementById("vexflow");
 const backBtn = document.getElementById("btn-back");
 const HighscoreLabel = document.getElementById("Highscore");
+const rightSound = new Audio('audio/rightanswer.mp3');
+const wrongSound = new Audio('audio/wronganswer.mp3');
 
 let currentcategory= "";
 let allQuestions = {};
@@ -43,29 +45,40 @@ async function checkAnswer(button) {
       const debugData = await response.json();
       console.log("API-Antwort:", debugData);
       if (debugData.success || debugData.success == "true") {
+        
+        rightSound.currentTime = 0; // Setzt den Ton zurück (falls man schnell klickt)
+        rightSound.play().catch(e => console.log("Audio-Autoplay blockiert:", e))
+        
         EndRes++;
         Richtig = 1;
         console.log("Antwort war Richtig!");
-              ans1.style.backgroundColor = "#007bff";
-      ans2.style.backgroundColor = "#007bff";
-      ans3.style.backgroundColor = "#007bff";
-      ans4.style.backgroundColor = "#007bff";
-      button.style.backgroundColor = "#00FF00";
-      setTimeout(() => {
+        
+        ans1.style.backgroundColor = "#007bff";
+        ans2.style.backgroundColor = "#007bff";
+        ans3.style.backgroundColor = "#007bff";
+        ans4.style.backgroundColor = "#007bff";
+        
+        button.style.backgroundColor = "#00FF00";
+        setTimeout(() => {
         button.style.backgroundColor = "#007bff";
-    }, 1000);
+        }, 1000);
 
       } else {
         Richtig = 0;
         console.log("Antwort war falsch!");
-              ans1.style.backgroundColor = "#007bff";
-      ans2.style.backgroundColor = "#007bff";
-      ans3.style.backgroundColor = "#007bff";
-      ans4.style.backgroundColor = "#007bff";
-      button.style.backgroundColor = "#8B0000";
-      setTimeout(() => {
-        button.style.backgroundColor = "#007bff";
-    }, 1000);
+        
+        wrongSound.currentTime = 0; // Setzt den Ton zurück (falls man schnell klickt)
+        wrongSound.play().catch(e => console.log("Audio-Autoplay blockiert:", e));
+        
+        ans1.style.backgroundColor = "#007bff";
+        ans2.style.backgroundColor = "#007bff";
+        ans3.style.backgroundColor = "#007bff";
+        ans4.style.backgroundColor = "#007bff";
+        
+        button.style.backgroundColor = "#8B0000";
+        setTimeout(() => {
+          button.style.backgroundColor = "#007bff";
+        }, 1000);
       }
     } catch (e) {
       console.error("Fehler beim Überprüfen der Antwort", e);
@@ -75,29 +88,38 @@ async function checkAnswer(button) {
     const selAnsw = button.getAttribute("data-raw"); // KI gegeben um den Inhalt zu checken wenn es mit Katex verändert wurde
 
     if (selAnsw == correctAnswerHTML) {
+      
       ans1.style.backgroundColor = "#007bff";
       ans2.style.backgroundColor = "#007bff";
       ans3.style.backgroundColor = "#007bff";
       ans4.style.backgroundColor = "#007bff";
+      
       button.style.backgroundColor = "#00FF00";
       setTimeout(() => {
         button.style.backgroundColor = "#007bff";
-    }, 1000);
+      }, 1000);
       
+      rightSound.currentTime = 0; // Setzt den Ton zurück (falls man schnell klickt)
+      rightSound.play().catch(e => console.log("Audio-Autoplay blockiert:", e))
 
       EndRes++;
       Richtig = 1;
       console.log("Antwort war Richtig!");
     } else {
       Richtig = 0;
+      
       ans1.style.backgroundColor = "#007bff";
       ans2.style.backgroundColor = "#007bff";
       ans3.style.backgroundColor = "#007bff";
       ans4.style.backgroundColor = "#007bff";
+      
       button.style.backgroundColor = "#8B0000";
       setTimeout(() => {
         button.style.backgroundColor = "#007bff";
-    }, 1000);
+      }, 1000);
+      
+      wrongSound.currentTime = 0; // Setzt den Ton zurück (falls man schnell klickt)
+      wrongSound.play().catch(e => console.log("Audio-Autoplay blockiert:", e));
       console.log("Antwort war falsch!");
     }
   }
@@ -204,6 +226,10 @@ async function switchwebquiz()
 
 async function loadServerQuestions()
 {
+  if (!navigator.onLine) {
+        handleServerQuestionsOffline();
+        return;
+    }
   try {
     Exdata = "";
     const ApiIndx = currentQuestionIndex +1; // +1 da die API bei 1 beginnt
@@ -226,12 +252,18 @@ async function loadServerQuestions()
       console.error("Datenformat war ungültig!:" , Exdata);
     }
   } catch (e) { 
-    console.error("Serverfragen konnten nicht geladen werden", e); 
+    console.error("Serverfragen konnten nicht geladen werden", e);
+    handleServerQuestionsOffline();
     question.innerText ="Fehler beim laden der Server-Frage.";
   }
 }
 
-
+function handleServerQuestionsOffline() {
+    alert("Die Webprogrammierung-Fragen können offline leider nicht vom Server der HTW geladen werden. Wir starten stattdessen das Informatik-Quiz für dich!");
+    isServerQuestion = false;
+    currentQuestionIndex = 0;
+    showQuestion("informatik");
+}
 
 
 
@@ -416,6 +448,29 @@ async function loadHighscores(category) {
     HighscoreLabel.style.display = "block";
     HighscoreLabel.innerHTML = "<h3> Highscores für " + category + "</h3>" + scores.map(s => `<p>${s.name}: ${s.score}</p>`).join('');
 }
+ // Offline zu Online Synchronisation der Highscores
+window.addEventListener('online', async () => {
+    console.log("Verbindung wiederhergestellt! Synchronisiere Offline-Highscores...");
+    
+    let offlineScores = JSON.parse(localStorage.getItem('offline_highscores')) || [];
+    if (offlineScores.length === 0) return;
 
+    for (const scoreData of offlineScores) {
+        try {
+            await fetch('data/saveHighscore.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(scoreData)
+            });
+            console.log(`Erfolgreich synchronisiert: ${scoreData.name} (${scoreData.score} Punkte)`);
+        } catch (e) {
+            console.error("Synchronisation fehlgeschlagen, versuche es später wieder", e);
+            return; // Abbrechen, falls der Server doch noch zickt
+        }
+    }
 
+    // Wenn alle erfolgreich hochgeladen wurden, löschen wir den Offline-Speicher
+    localStorage.removeItem('offline_highscores');
+    alert("Alle deine Offline-Highscores wurden erfolgreich mit dem Server synchronisiert! 🚀");
+});
 
