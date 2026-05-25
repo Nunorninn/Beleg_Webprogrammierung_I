@@ -11,6 +11,7 @@ const Result = document.getElementById("result");
 const Progress = document.getElementById("progress");
 const musicdisplay = document.getElementById("vexflow");
 const backBtn = document.getElementById("btn-back");
+const HighscoreLabel = document.getElementById("Highscore");
 
 let currentcategory= "";
 let allQuestions = {};
@@ -337,18 +338,10 @@ function ShowResult(Richtig)
     {
       Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!";
       saveHighscore(prompt("Gib deinen Namen für die Highscore ein:"), EndRes, currentcategory);
+      loadHighscores(currentcategory);
+    } else {
+      Result.innerText = "Fehler: Alle Fragen wurden bereits beantwortet!";
     }
-    else if (currentQuestionIndex > 10 && Richtig == 1)
-    {
-      Result.innerText = "Da versucht jemand zu Mogeln, -1 Punkt!" + EndRes;
-      EndRes= EndRes-2;
-    }
-    else
-    {
-      Result.innerText = "Da versucht jemand zu Mogeln, -1 Punkt!" +EndRes;
-      EndRes--;
-    }
-    
 }
 
 function drawNote(vexFlow, notation) {
@@ -417,9 +410,11 @@ async function saveHighscore(playerName, finalScore, currentCategory) {
 async function loadHighscores(category) {
     const response = await fetch(`data/getHighSC.php?category=${category}`);
     const scores = await response.json();
-    
+    console.log(response);
     console.log("Highscores für", category, scores);
     // Hier kannst du dann dein HTML aktualisieren, z.B. eine Tabelle füllen
+    HighscoreLabel.style.display = "block";
+    HighscoreLabel.innerHTML = "<h3> Highscores für " + category + "</h3>" + scores.map(s => `<p>${s.name}: ${s.score}</p>`).join('');
 }
 
 
