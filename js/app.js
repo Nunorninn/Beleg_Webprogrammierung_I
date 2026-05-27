@@ -373,7 +373,6 @@ function ShowResult(Richtig)
     {
       Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!";
       saveHighscore(prompt("Gib deinen Namen für die Highscore ein:"), EndRes, currentcategory);
-      loadHighscores(currentcategory);
     } else {
       Result.innerText = "Fehler: Alle Fragen wurden bereits beantwortet!";
     }
@@ -439,17 +438,48 @@ async function saveHighscore(playerName, finalScore, currentCategory) {
 
     const result = await response.json();
     console.log(result.message);
+    loadHighscores(currentcategory);
 }
 
 // Top 10 vom Server holen
+
 async function loadHighscores(category) {
-    const response = await fetch(`data/getHighSC.php?category=${category}`);
-    const scores = await response.json();
-    console.log(response);
-    console.log("Highscores für", category, scores);
-    // Hier kannst du dann dein HTML aktualisieren, z.B. eine Tabelle füllen
-    HighscoreLabel.style.display = "block";
-    HighscoreLabel.innerHTML = "<h3> Highscores für " + category + "</h3>" + scores.map(s => `<p>${s.name}: ${s.score}</p>`).join('');
+HighscoreLabel.style.display = "block";
+    
+    try {
+        const response = await fetch(`data/getHighSC.php?category=${category}`);
+        
+        // Erst schauen, ob der Server überhaupt mit Status 200 (OK) antwortet
+        if (!response.ok) {
+            throw new Error(`Server-Fehler: Status ${response.status}`);
+        }
+
+        const textData = await response.text(); // Als Rohtext einlesen
+        console.log("Rohdaten vom Server:", textData);
+
+        if (!textData.trim()) {
+            throw new Error("Der Server hat eine komplett leere Antwort geschickt!");
+        }
+
+        const scores = JSON.parse(textData); // Erst jetzt parsen!
+
+        // Falls der Server uns ein Fehler-Objekt geschickt hat
+        if (scores.error) {
+            throw new Error(scores.message);
+        }
+
+        // Backup im localStorage ablegen und anzeigen
+        localStorage.setItem(`cached_scores_${category}`, JSON.stringify(scores));
+        HighscoreLabel.innerHTML = "<h3> Highscores für " + category + "</h3>" + 
+    scores.map((s, index) => `<p>${index + 1}. ${s.name} ${s.score}</p>`).join('');
+    } catch (e) {
+        console.warn("Konnte Highscores nicht live laden, nutze Offline-Backup:", e);
+        // Fallback auf LocalStorage bei Fehlern
+        const cachedScores = JSON.parse(localStorage.getItem(`cached_scores_${category}`)) || [];
+        HighscoreLabel.style.display = "block";
+        HighscoreLabel.innerHTML = "<h3> Highscores für " + category + "</h3>" + 
+        cachedScores.map((s, index) => `<p>${index + 1}. ${s.name} ${s.score}</p>`).join('');
+    }
 }
  // Offline zu Online Synchronisation der Highscores
 window.addEventListener('online', async () => {
@@ -476,7 +506,3 @@ window.addEventListener('online', async () => {
     localStorage.removeItem('offline_highscores');
     alert("Alle deine Offline-Highscores wurden erfolgreich mit dem Server synchronisiert! 🚀");
 });
-
-
-//bisherige Fehler mit der Datenbank: Uncaught (in promise) SyntaxError: JSON.parse: unexpected end of data at line 1 column 1 of the JSON data
-//Response { type: "basic", url: "https://www.informatik.htw-dresden.de/~s88665/data/getHighSC.php?category=informatik", redirected: false, status: 200, ok: true, statusText: "OK", headers: Headers(6), body: ReadableStream, bodyUsed: true } 
