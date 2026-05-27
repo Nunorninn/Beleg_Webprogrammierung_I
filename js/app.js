@@ -360,6 +360,9 @@ function goBack() {
     Updateprogress(currentQuestionIndex);
     Progress.style.display = "none";
     backBtn.style.display = "none";
+    HighscoreLabel.style.display = "none";
+    HighscoreLabel.innerHTML = "";
+
     console.log("Zurück zum Hauptmenü");
 }
 
@@ -474,3 +477,6 @@ window.addEventListener('online', async () => {
     alert("Alle deine Offline-Highscores wurden erfolgreich mit dem Server synchronisiert! 🚀");
 });
 
+
+//bisherige Fehler mit der Datenbank: Uncaught (in promise) SyntaxError: JSON.parse: unexpected end of data at line 1 column 1 of the JSON data
+//Response { type: "basic", url: "https://www.informatik.htw-dresden.de/~s88665/data/getHighSC.php?category=informatik", redirected: false, status: 200, ok: true, statusText: "OK", headers: Headers(6), body: ReadableStream, bodyUsed: true } 
