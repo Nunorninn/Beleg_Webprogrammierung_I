@@ -373,6 +373,7 @@ function ShowResult(Richtig)
     {
       Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!";
       saveHighscore(prompt("Gib deinen Namen für die Highscore ein:"), EndRes, currentcategory);
+      loadHighscores(currentcategory);
     } else {
       Result.innerText = "Fehler: Alle Fragen wurden bereits beantwortet!";
     }
@@ -424,7 +425,7 @@ function drawNote(vexFlow, notation) {
 //// Highscore-Funktionalität ////
 
 async function saveHighscore(playerName, finalScore, currentCategory) {
-    const response = await fetch('data/saveHighscore.php', {
+    const response = await fetch('https://www.informatik.htw-dresden.de/~s88665/data/saveHighscore.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -447,7 +448,7 @@ async function loadHighscores(category) {
 HighscoreLabel.style.display = "block";
     
     try {
-        const response = await fetch(`data/getHighSC.php?category=${category}`);
+        const response = await fetch(`https://www.informatik.htw-dresden.de/~s88665/data/getHighSC.php?category=${category}`);
         
         // Erst schauen, ob der Server überhaupt mit Status 200 (OK) antwortet
         if (!response.ok) {

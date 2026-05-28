@@ -1,5 +1,7 @@
 <?php
 // data/getHighSC.php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 header('Content-Type: application/json; charset=utf-8');
 
 // Fehler-Anzeige im Browser unterdrücken, damit sie das JSON nicht kaputt macht
