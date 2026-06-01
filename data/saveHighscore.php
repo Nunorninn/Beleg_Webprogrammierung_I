@@ -11,7 +11,7 @@ header('Content-Type: application/json; charset=utf-8');
 try {
 // JSON-Daten empfangen (vom JS fetch)
 $data = json_decode(file_get_contents("php://input"), true);
-
+$pdo = new PDO("sqlite:" .__DIR__ . DIRECTORY_SEPARATOR . 'highscores.sqlite');
 // Prüfen, ob alle Daten da sind
 if (isset($data['name']) && isset($data['score']) && isset($data['category'])) {
     
