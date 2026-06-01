@@ -366,14 +366,22 @@ function goBack() {
     console.log("Zurück zum Hauptmenü");
 }
 
-function ShowResult(Richtig)
+async function ShowResult(Richtig)
 {
     Result.style.display = "block";
     if(currentQuestionIndex <= 10)
     {
       Result.innerText = "Du hast " + EndRes + "/10 Fragen richtig beantwortet!";
-      saveHighscore(prompt("Gib deinen Namen für die Highscore ein:"), EndRes, currentcategory);
-      loadHighscores(currentcategory);
+      let spielerName = prompt("Gib deinen Namen für die Highscore ein:");
+        
+        // Falls Abbrechen geklickt wurde (null) oder nichts eingegeben wurde ("")
+        if (spielerName === null || spielerName.trim() === "") {
+            spielerName = "Anonymer Spieler";
+        } else {
+            spielerName = spielerName.trim();
+        }
+        await saveHighscore(spielerName, EndRes, currentcategory);
+        await loadHighscores(currentcategory);
     } else {
       Result.innerText = "Fehler: Alle Fragen wurden bereits beantwortet!";
     }
@@ -425,21 +433,29 @@ function drawNote(vexFlow, notation) {
 //// Highscore-Funktionalität ////
 
 async function saveHighscore(playerName, finalScore, currentCategory) {
-    const response = await fetch('https://www.informatik.htw-dresden.de/~s88665/data/saveHighscore.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: playerName,
-            score: finalScore,
-            category: currentCategory
-        })
-    });
+    try {
+        const response = await fetch('https://www.informatik.htw-dresden.de/~s88665/data/saveHighscore.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: playerName,
+                score: finalScore,
+                category: currentCategory
+            })
+        });
 
-    const result = await response.json();
-    console.log(result.message);
-    loadHighscores(currentcategory);
+        if (!response.ok) {
+            throw new Error(`Der Server hat das Speichern blockiert (Status ${response.status})`);
+        }
+
+        const result = await response.json();
+        console.log("Server-Antwort:", result.message);
+
+    } catch (e) {
+        console.error("Speichern fehlgeschlagen: ", e.message);
+    }
 }
 
 // Top 10 vom Server holen
@@ -450,7 +466,6 @@ HighscoreLabel.style.display = "block";
     try {
         const response = await fetch(`https://www.informatik.htw-dresden.de/~s88665/data/getHighSC.php?category=${category}`);
         
-        // Erst schauen, ob der Server überhaupt mit Status 200 (OK) antwortet
         if (!response.ok) {
             throw new Error(`Server-Fehler: Status ${response.status}`);
         }
@@ -462,9 +477,8 @@ HighscoreLabel.style.display = "block";
             throw new Error("Der Server hat eine komplett leere Antwort geschickt!");
         }
 
-        const scores = JSON.parse(textData); // Erst jetzt parsen!
+        const scores = JSON.parse(textData);
 
-        // Falls der Server uns ein Fehler-Objekt geschickt hat
         if (scores.error) {
             throw new Error(scores.message);
         }
